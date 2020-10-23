@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konami Code</title>
+</head>
+<body>
+    
+</body>
+<script>
+    window.addEventListener('keyup', konamiCode);
+    const pressed = [];
+    const secretCode = 'wesbos';
+
+    function konamiCode(e) {
+        pressed.push(e.key);
+        pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+        console.log(pressed.join(''));
+        if (pressed.join('').includes(secretCode)) {
+            console.log('YES');
+        }
+    }
+</script>
+</html>

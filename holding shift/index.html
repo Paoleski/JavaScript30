@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shift-click</title>
+  </head>
+  <body>
+    <div class="principal">
+      <div class="item">
+        <input type="checkbox" />
+        <p>This is an inbox layout</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" />
+        <p>Check one item</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" />
+        <p>Hold down your shift key</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" />
+        <p>Check a lower item</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" />
+        <p>Everything in between should also be checked</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" />
+        <p>Try do it without any libraries</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" />
+        <p>Just wih regular JavaScript</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" />
+        <p>Good Luck!</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" />
+        <p>Don't forget to tweet your result</p>
+      </div>
+    </div>
+    <script>
+      const inputs = document.querySelectorAll('input');
+      let lastCheck;
+
+      inputs.forEach((input) => input.addEventListener('click', handleCheck));
+
+      function handleCheck(e) {
+        let inBetween = false;
+        if (e.shiftKey && this.checked) {
+          inputs.forEach((input) => {
+            if (input === this || input === lastCheck) {
+              inBetween = !inBetween;
+              console.log('starting to check them inbetween')
+            }
+            if (inBetween) {
+                input.checked = true;
+            }
+          });   
+        }
+
+        lastCheck = this;
+      }
+    </script>
+    <style>
+      html {
+        margin: 0;
+        font-family: sans-serif;
+        background: #ffc600;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      .principal {
+        max-width: 400px;
+        margin: 50px auto;
+        background: white;
+        border-radius: 4px;
+        box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        margin: 0;
+        padding: 20px;
+        flex: 1;
+        border-left: 1px solid #d1e2ff;
+      }
+
+      input[type='checkbox'] {
+        margin: 20px;
+      }
+
+      input:checked + p {
+        background: #f9f9f9;
+        text-decoration: line-through;
+      }
+    </style>
+  </body>
+</html>
